@@ -24,8 +24,11 @@ func main() {
 	authController := controller.NewAuthController(conf)
 	callbackController := controller.NewCallbackController(conf)
 
-	r.GET("/github", authController.Github)
-	r.GET("/auth", callbackController.GitHub)
+	home := r.Group("/lcauth")
+	home.GET("github", authController.Github)
+
+	auth := r.Group("lcauth/auth")
+	auth.GET("github", callbackController.GitHub)
 
 	r.NoRoute(func(ctx *gin.Context) { ctx.JSON(http.StatusNotFound, gin.H{}) })
 

@@ -21,9 +21,10 @@ func NewAuthController(githubConfig *oauth2.Config) *AuthController {
 func (ac *AuthController) Github(ctx *gin.Context) {
 	//generate auth url
 	AuthService := service.NewAuthService(ac.GithubConfig)
-	err := AuthService.Github()
+	redirectUrl, err := AuthService.Github(ctx)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
 	}
-	ctx.JSON(200, gin.H{"message": "success"})
+	ctx.Redirect(302, redirectUrl)
+	//ctx.JSON(200, gin.H{"message": "success"})
 }
