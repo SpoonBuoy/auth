@@ -13,9 +13,6 @@ func main() {
 	fmt.Println("bullshit programmer...")
 	fmt.Println("lcnt auth running")
 	fmt.Println("lcnt auth running")
-	fmt.Println("lcnt auth running")
-	fmt.Println("lcnt auth running")
-	fmt.Println("lcnt auth running")
 	r := gin.Default()
 	conf := &oauth2.Config{
 		ClientID:     "e52d7c7e965a974ac487",
